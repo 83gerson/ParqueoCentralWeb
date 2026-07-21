@@ -6,3 +6,5 @@
 4. **Verificar SQL Server LocalDB** (incluido en la carga de trabajo de *ASP.NET y desarrollo web*).
 5. **Ejecutar el proyecto**: la base de datos se creará automáticamente con datos de ejemplo en el primer arranque.
 6. **Iniciar sesión** ingresando el nombre de operador solicitado al arrancar la aplicación.
+
+7. **Enlace del video**	https://drive.google.com/file/d/1IXGCpXvT5ula3v4bPk8GSHhqp5qnyvBR/view?usp=sharing
