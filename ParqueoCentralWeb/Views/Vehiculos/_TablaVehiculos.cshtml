@@ -1,0 +1,33 @@
+﻿@model System.Collections.Generic.List<ParqueoCentralWeb.Models.Vehiculo>
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">No se encontraron vehículos con los criterios indicados.</div>
+}
+else
+{
+    <table class="table table-striped table-hover align-middle">
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Tipo</th>
+                <th>Propietario</th>
+                <th>Contacto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var v in Model)
+            {
+                <tr>
+                    <td><strong>@v.Placa</strong></td>
+                    <td>@v.TipoVehiculo</td>
+                    <td>@v.Propietario</td>
+                    <td>@v.Contacto</td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-secondary" href="@Url.Action("Edit", new { id = v.IdVehiculo })">Editar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

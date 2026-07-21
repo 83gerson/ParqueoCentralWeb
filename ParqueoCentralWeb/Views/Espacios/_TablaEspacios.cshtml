@@ -1,0 +1,42 @@
+﻿@model System.Collections.Generic.List<ParqueoCentralWeb.Models.EspacioEstacionamiento>
+<div class="row g-2 mb-3">
+    @foreach (var e in Model)
+    {
+        var claseTarjeta = !e.Activo ? "bg-secondary" : (e.Estado == ParqueoCentralWeb.Models.EstadoEspacio.Disponible ? "bg-success" : "bg-danger");
+        <div class="col-md-2 col-sm-4 col-6">
+            <div class="card text-white @claseTarjeta text-center">
+                <div class="card-body py-2">
+                    <div class="fw-bold">@e.CodigoEspacio</div>
+                    <small>@e.TipoEspacio</small><br />
+                    <small>@(!e.Activo ? "Inactivo" : e.Estado.ToString())</small>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Activo</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.CodigoEspacio</td>
+                <td>@e.TipoEspacio</td>
+                <td>@e.Estado</td>
+                <td>@(e.Activo ? "Sí" : "No")</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" href="@Url.Action("Edit", new { id = e.IdEspacio })">Editar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

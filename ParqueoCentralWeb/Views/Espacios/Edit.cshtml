@@ -1,0 +1,32 @@
+﻿@model ParqueoCentralWeb.Models.EspacioEstacionamiento
+@{
+    ViewBag.Title = "Editar espacio de estacionamiento";
+}
+<h2>Editar espacio de estacionamiento</h2>
+@using (Html.BeginForm("Edit", "Espacios", new { id = Model.IdEspacio }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.CodigoEspacio)
+
+    <div class="mb-3">
+        <label class="form-label">Código de espacio</label>
+        <input type="text" class="form-control" value="@Model.CodigoEspacio" disabled="disabled" />
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.TipoEspacio, new { @class = "form-label" })
+        @Html.EnumDropDownListFor(m => m.TipoEspacio, new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.TipoEspacio, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-check mb-3">
+        @Html.CheckBoxFor(m => m.Activo, new { @class = "form-check-input" })
+        @Html.LabelFor(m => m.Activo, new { @class = "form-check-label" })
+    </div>
+
+    <p class="text-muted">Estado actual: <strong>@Model.Estado</strong>. El estado disponible/ocupado se gestiona automáticamente con las entradas y salidas.</p>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+}

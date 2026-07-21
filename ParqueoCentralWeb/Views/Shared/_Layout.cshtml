@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Parqueo Central Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">Parqueo Central Web S.A.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Vehiculos")">Vehículos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Espacios")">Espacios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Entrada", "Movimientos")">Entrada</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Salida", "Movimientos")">Salida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Index", "Movimientos")">Historial</a></li>
+                </ul>
+                @if (Session["NombreOperador"] != null)
+                {
+                    <span class="navbar-text text-white me-3">Operador: <strong>@Session["NombreOperador"]</strong></span>
+                    <a class="btn btn-outline-light btn-sm" href="@Url.Action("Salir", "Sesion")">Cerrar sesión</a>
+                }
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        @if (TempData["Mensaje"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["Mensaje"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["Error"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+            </div>
+        }
+
+        @RenderBody()
+    </div>
+
+    <footer class="text-center text-muted my-4">
+        <small>Parqueo Central Web S.A. &copy; @DateTime.Now.Year - Proyecto #1, Programación Avanzada en Web (03101)</small>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/site.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

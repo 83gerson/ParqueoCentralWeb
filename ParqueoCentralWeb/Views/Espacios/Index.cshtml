@@ -1,0 +1,19 @@
+﻿@model System.Collections.Generic.List<ParqueoCentralWeb.Models.EspacioEstacionamiento>
+@{
+    ViewBag.Title = "Espacios de estacionamiento";
+}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Espacios de estacionamiento</h2>
+    <div>
+        <button id="btnActualizar" class="btn btn-outline-primary">Actualizar</button>
+        <a class="btn btn-success" href="@Url.Action("Create")">+ Registrar espacio</a>
+    </div>
+</div>
+
+<div id="contenedorTablaEspacios">
+    @Html.Partial("_TablaEspacios", Model)
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/espacios.js"></script>
+}

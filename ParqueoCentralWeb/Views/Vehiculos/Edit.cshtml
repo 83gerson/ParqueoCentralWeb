@@ -1,0 +1,38 @@
+﻿@model ParqueoCentralWeb.Models.Vehiculo
+@{
+    ViewBag.Title = "Editar vehículo";
+}
+<h2>Editar vehículo</h2>
+@using (Html.BeginForm("Edit", "Vehiculos", new { id = Model.IdVehiculo }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Placa)
+
+    <div class="mb-3">
+        <label class="form-label">Placa</label>
+        <input type="text" class="form-control" value="@Model.Placa" disabled="disabled" />
+        <div class="form-text">La placa no se puede modificar una vez registrada (criterio HU-03).</div>
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.TipoVehiculo, new { @class = "form-label" })
+        @Html.EnumDropDownListFor(m => m.TipoVehiculo, new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.TipoVehiculo, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Propietario, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.Propietario, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Propietario, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.Contacto, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.Contacto, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+}

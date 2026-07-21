@@ -1,0 +1,38 @@
+﻿@model System.Collections.Generic.List<ParqueoCentralWeb.Models.MovimientoEstacionamiento>
+@{
+    ViewBag.Title = "Historial de movimientos";
+}
+<h2>Historial de movimientos</h2>
+
+<div class="row g-2 mb-3">
+    <div class="col-md-4">
+        <input type="text" id="fPlaca" class="form-control" placeholder="Filtrar por placa" value="@ViewBag.FiltroPlaca" autocomplete="off" />
+    </div>
+    <div class="col-md-3">
+        <select id="fEstado" class="form-select">
+            <option value="">Todos los estados</option>
+            <option value="Activo">Activos</option>
+            <option value="Finalizado">Finalizados</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <input type="date" id="fFecha" class="form-control" value="@ViewBag.FiltroFecha" />
+    </div>
+    <div class="col-md-2">
+        <button id="btnFiltrar" class="btn btn-primary w-100">Filtrar</button>
+    </div>
+</div>
+
+<div id="contenedorTablaMovimientos">
+    @Html.Partial("_TablaMovimientos", Model)
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/movimientos.js"></script>
+    <script>
+        var estadoInicial = "@ViewBag.FiltroEstado";
+        if (estadoInicial) {
+            document.getElementById("fEstado").value = estadoInicial;
+        }
+    </script>
+}

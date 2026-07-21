@@ -1,0 +1,16 @@
+body {
+    background-color: #f5f6fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+.card .display-6 {
+    font-weight: bold;
+}
+
+.card-body h5.card-title {
+    font-size: 1rem;
+    opacity: 0.9;
+}

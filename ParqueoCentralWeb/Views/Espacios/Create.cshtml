@@ -1,0 +1,31 @@
+﻿@model ParqueoCentralWeb.Models.EspacioEstacionamiento
+@{
+    ViewBag.Title = "Registrar espacio de estacionamiento";
+}
+<h2>Registrar espacio de estacionamiento</h2>
+@using (Html.BeginForm("Create", "Espacios", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.CodigoEspacio, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.CodigoEspacio, new { @class = "form-control", autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.CodigoEspacio, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="mb-3">
+        @Html.LabelFor(m => m.TipoEspacio, new { @class = "form-label" })
+        @Html.EnumDropDownListFor(m => m.TipoEspacio, "Seleccione un tipo", new { @class = "form-select" })
+        @Html.ValidationMessageFor(m => m.TipoEspacio, "", new { @class = "text-danger" })
+    </div>
+
+
+    <div class="form-check mb-3">
+        @Html.CheckBoxFor(m => m.Activo, new { @class = "form-check-input" })
+        @Html.LabelFor(m => m.Activo, new { @class = "form-check-label" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+}

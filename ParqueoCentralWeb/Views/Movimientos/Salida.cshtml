@@ -1,0 +1,38 @@
+﻿@model ParqueoCentralWeb.Models.MovimientoEstacionamiento
+@{
+    ViewBag.Title = "Registrar salida de vehículo";
+}
+<h2>Registrar salida de vehículo</h2>
+
+@using (Html.BeginForm("Salida", "Movimientos", FormMethod.Get))
+{
+    <div class="input-group mb-3">
+        <input type="text" name="placa" class="form-control" placeholder="Ingrese la placa" value="@ViewBag.PlacaBuscada" autocomplete="off" />
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+}
+
+@if (ViewBag.MensajeBusqueda != null)
+{
+    <div class="alert alert-warning">@ViewBag.MensajeBusqueda</div>
+}
+
+@if (Model != null)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Entrada activa encontrada</h5>
+            <p><strong>Placa:</strong> @Model.Vehiculo.Placa</p>
+            <p><strong>Propietario:</strong> @Model.Vehiculo.Propietario</p>
+            <p><strong>Espacio:</strong> @Model.Espacio.CodigoEspacio</p>
+            <p><strong>Fecha/hora de entrada:</strong> @Model.FechaHoraEntrada.ToString("dd/MM/yyyy HH:mm")</p>
+
+            @using (Html.BeginForm("RegistrarSalida", "Movimientos", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="idMovimiento" value="@Model.IdMovimiento" />
+                <button type="submit" class="btn btn-danger">Registrar salida y calcular cobro</button>
+            }
+        </div>
+    </div>
+}

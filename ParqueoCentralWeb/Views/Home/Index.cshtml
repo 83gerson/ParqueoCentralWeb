@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+}
+<h2>Panel de estacionamiento</h2>
+<p>Bienvenido(a), <strong>@ViewBag.NombreOperador</strong>.</p>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="card text-bg-primary">
+            <div class="card-body">
+                <h5 class="card-title">Vehículos registrados</h5>
+                <p class="display-6">@ViewBag.TotalVehiculos</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-success">
+            <div class="card-body">
+                <h5 class="card-title">Espacios disponibles</h5>
+                <p class="display-6">@ViewBag.EspaciosDisponibles</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-danger">
+            <div class="card-body">
+                <h5 class="card-title">Espacios ocupados</h5>
+                <p class="display-6">@ViewBag.EspaciosOcupados</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-bg-warning">
+            <div class="card-body">
+                <h5 class="card-title">Movimientos activos</h5>
+                <p class="display-6">@ViewBag.MovimientosActivos</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-4"><a class="btn btn-outline-primary w-100 py-3" href="@Url.Action("Entrada", "Movimientos")">Registrar entrada de vehículo</a></div>
+    <div class="col-md-4"><a class="btn btn-outline-primary w-100 py-3" href="@Url.Action("Salida", "Movimientos")">Registrar salida de vehículo</a></div>
+    <div class="col-md-4"><a class="btn btn-outline-primary w-100 py-3" href="@Url.Action("Index", "Movimientos")">Ver historial de movimientos</a></div>
+</div>

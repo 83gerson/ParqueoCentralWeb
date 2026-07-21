@@ -1,0 +1,46 @@
+﻿@model System.Collections.Generic.List<ParqueoCentralWeb.Models.MovimientoEstacionamiento>
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-info">No se encontraron movimientos con los criterios indicados.</div>
+}
+else
+{
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Placa</th>
+                <th>Espacio</th>
+                <th>Entrada</th>
+                <th>Salida</th>
+                <th>Estado</th>
+                <th>Monto</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>@m.Vehiculo.Placa</td>
+                    <td>@m.Espacio.CodigoEspacio</td>
+                    <td>@m.FechaHoraEntrada.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@(m.FechaHoraSalida.HasValue ? m.FechaHoraSalida.Value.ToString("dd/MM/yyyy HH:mm") : "-")</td>
+                    <td>
+                        @if (m.EstadoMovimiento == ParqueoCentralWeb.Models.EstadoMovimiento.Activo)
+                        {
+                            <span class="badge bg-warning text-dark">Activo</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Finalizado</span>
+                        }
+                    </td>
+                    <td>@(m.MontoCobrado.HasValue ? "₡" + m.MontoCobrado.Value.ToString("N2") : "-")</td>
+                    <td class="text-end">
+                        <a class="btn btn-sm btn-outline-secondary" href="@Url.Action("Details", new { id = m.IdMovimiento })">Ver detalle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

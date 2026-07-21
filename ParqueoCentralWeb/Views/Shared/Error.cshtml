@@ -1,0 +1,7 @@
+@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+}
+<h2>Ha ocurrido un error</h2>
+<p>Lo sentimos, ocurrió un error al procesar su solicitud. Puede volver al inicio e intentarlo nuevamente.</p>
+<p><a class="btn btn-primary" href="@Url.Action("Index", "Home")">Volver al inicio</a></p>
